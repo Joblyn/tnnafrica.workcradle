@@ -7,13 +7,14 @@ import MainNavbar from "../components/layout/MainNavbar/MainNavbar";
 import DietitianSidebar from "../components/layout/DietitianSidebar/DietitianSidebar";
 
 import MainFooter from "../components/layout/MainFooter";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 const DietitianDefaultSideBar = ({ children, noNavbar, noFooter }) => {
-  const authState = useSelector(state => state.authState);
+  const authState = JSON.parse(localStorage.getItem('loggedInUser'))
 
-  if(!authState.isLoggedIn || authState.data.user.role !== 'dietitian') {
+
+  if(!authState || authState.role !== 'dietitian') {
     return <Redirect to="/"/>
   }
 

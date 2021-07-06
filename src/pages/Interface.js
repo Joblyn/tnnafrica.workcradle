@@ -63,7 +63,6 @@ export default function Interface() {
           </Link>
           <Link
             to="/dietitian/login"
-            // onClick={() => history.push("/dietitian/login")}
             className="m-3"
           >
             <div
@@ -98,7 +97,6 @@ export default function Interface() {
           </Link>
           <Link
             to="/patient/login"
-            // onClick={() => history.push("/patient/login")}
             className="m-3"
           >
             <div

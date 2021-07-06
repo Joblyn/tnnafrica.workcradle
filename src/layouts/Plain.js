@@ -2,13 +2,12 @@ import React from "react";
 import { Container } from "shards-react";
 import { Link, Redirect } from "react-router-dom";
 import logo from "../images/logo.jpg";
-import { useSelector } from "react-redux";
 
 export default function Plain({ children }) {
   const authState = JSON.parse(localStorage.getItem('loggedInUser'))
 
   if(authState && authState.role){
-    return <Redirect to={`/${authState.data.user.role}/profile`}/>
+    return <Redirect to={`/${authState.role}/profile`}/>
   }
 
   return (

@@ -121,7 +121,7 @@ export default [
     component: CompanyPatients,
   },
   {
-    path: "/admin/create_dietitian",
+    path: "/admin/create_user",
     layout: DefaultLayout,
     component: CreateDietitian,
   },

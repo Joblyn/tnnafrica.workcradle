@@ -20,7 +20,8 @@ import {
 // import { useHistory } from "react-router";
 
 export default function CreateDietitian() {
-  let companyCode = JSON.parse(localStorage.getItem("loggedInUser")).companyCode;
+  let companyCode = JSON.parse(localStorage.getItem("loggedInUser"))
+    .companyCode;
   const dispatch = useDispatch();
   const createDietitianState = useSelector((state) => state.createDietitian);
   const [success, setSuccess] = useState(false);
@@ -67,7 +68,6 @@ export default function CreateDietitian() {
   }, [success]);
 
   const [control, setControl] = useState({
-    role: "dietitian",
     isEmailVerified: true,
     companyCode: `${companyCode}`,
   });
@@ -97,7 +97,7 @@ export default function CreateDietitian() {
       <Row noGutters className="page-header py-4">
         <PageTitle
           sm="4"
-          title="Create Dietitian"
+          title="Create User"
           subtitle="Dashboard"
           className="text-sm-left"
         />
@@ -110,13 +110,27 @@ export default function CreateDietitian() {
             maxWidth: "500px",
           }}
         >
-          <h4 className="mb-4 text-center">Create Dietitian</h4>
+          <h4 className="mb-4 text-center">Create User</h4>
           <Form id="dietician_Login" onSubmit={handleSubmit}>
             {errorMessage && (
               <FormFeedback style={{ display: "block" }} className="mt-0">
                 {errorMessage}
               </FormFeedback>
             )}
+            <FormGroup className="d-flex flex-column">
+              <label>User Role</label>
+              <select
+                onChange={handleChange}
+                name="role"
+                style={{ width: "100%" }}
+                className="form-control text-muted"
+                required
+              >
+                <option></option>
+                <option value="admin">Admin</option>
+                <option value="dietitian">Dietitian</option>
+              </select>
+            </FormGroup>
             <FormGroup>
               <label htmlFor="name">Name</label>
               <FormInput
@@ -177,7 +191,7 @@ export default function CreateDietitian() {
               </p>
             </FormGroup>
             <FormGroup>
-            <label htmlFor="confirmPassword">Confirm Password</label>
+              <label htmlFor="confirmPassword">Confirm Password</label>
               <FormInput
                 required
                 onChange={handleChange}
@@ -195,7 +209,7 @@ export default function CreateDietitian() {
                 style={{ fontSize: "1rem" }}
                 form="dietician_Login"
               >
-                Create Dietitian
+                Create User
               </Button>
             </Col>
             {errorMessage && (

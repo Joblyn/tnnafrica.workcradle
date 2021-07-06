@@ -15,7 +15,7 @@ export default function CompanyPatients() {
   const history = useHistory();
   const dispatch = useDispatch();
   const allPatients = useSelector((state) => state.allPatients);
-  const [patients, setPatients] = useState([]);
+  const [patients, setPatients] = useState();
 
   useEffect(() => {
     let endpoint = getPatients + companyCode;

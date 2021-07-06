@@ -5,13 +5,14 @@ import { Container, Row, Col } from "shards-react";
 import MainNavbar from "../components/layout/MainNavbar/MainNavbar";
 import MainSidebar from "../components/layout/MainSidebar/MainSidebar";
 import MainFooter from "../components/layout/MainFooter";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 const DefaultLayout = ({ children, noNavbar, noFooter }) => {
-  const authState = useSelector(state => state.authState);
+  const authState = JSON.parse(localStorage.getItem('loggedInUser'))
 
-  if(!authState.isLoggedIn || authState.data.user.role !== 'admin') {
+
+  if(!authState || authState.role !== 'admin') {
     return <Redirect to="/"/>
   }
 

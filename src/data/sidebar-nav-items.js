@@ -136,9 +136,9 @@ export function getAdminNavItems() {
       to: `/admin/dietitians`,
     },
     {
-      title: "Create Dietitian",
+      title: "Create User",
       htmlBefore: '<i class="material-icons">person_add_alt</i>',
-      to: `/admin/create_dietitian`,
+      to: `/admin/create_user`,
     },
     {
       title: "Create Patient",
