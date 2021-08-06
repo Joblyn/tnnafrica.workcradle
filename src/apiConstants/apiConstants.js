@@ -1,5 +1,7 @@
 let localUrl = 'https://dev-workcradle.herokuapp.com/api/';
+// let localUrl = 'https://cmsbackv1.herokuapp.com/api/v1/';
 let prodUrl = 'https://dev-workcradle.herokuapp.com/api/';
+// let prodUrl = 'https://cmsbackv1.herokuapp.com/api/v1/';
 
 export let baseUrl = process.env.NODE_ENV === 'production' ? prodUrl : localUrl;
 

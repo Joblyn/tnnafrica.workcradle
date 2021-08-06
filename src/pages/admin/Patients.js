@@ -109,7 +109,7 @@ export default function CompanyPatients() {
                           // whiteSpace: "nowrap",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
-                          lineClamp: "2",
+                          // lineClamp: "2",
                         }}
                         className="mb-2"
                       >
