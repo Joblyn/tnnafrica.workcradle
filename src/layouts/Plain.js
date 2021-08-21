@@ -18,10 +18,7 @@ export default function Plain({ children }) {
             id="main-logo"
             className="d-inline-block align-middle mx-auto"
             style={{ maxWidth: "90px" }}
-            // src={require("../images/logo-1200.png")}
-            // src='../images/logo.jpg'
             src={logo}
-            // alt="workcradle"
             alt="tnnafrica"
           />
         </Link>

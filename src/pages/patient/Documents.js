@@ -168,7 +168,7 @@ export default function PatientDocuments() {
                   </tr>
                 </thead>
                 <tbody>
-                  {searchItems.map((document, id) => {
+                  {searchItems.reverse().map((document, id) => {
                     let d = new Date(document.Document.createdAt);
                     return (
                       <tr>

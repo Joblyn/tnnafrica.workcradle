@@ -58,8 +58,8 @@ export default function UploadDietPlan() {
       formData.append("companyCode", `${dietitian.companyCode}`);
       formData.append("docType", "patientDietPlan");
 
-      let localUrl = "https://dev-workcradle.herokuapp.com/api/";
-      let prodUrl = "https://dev-workcradle.herokuapp.com/api/";
+      let localUrl = "https://workcradle.herokuapp.com/api/";
+      let prodUrl = "https://workcradle.herokuapp.com/api/";
       let baseUrl = process.env.NODE_ENV === "production" ? prodUrl : localUrl;
       const endpoint = baseUrl + createDocument;
       const token = JSON.parse(localStorage.getItem("tokens")).access.token;

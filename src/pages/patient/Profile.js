@@ -93,7 +93,6 @@ export default function PatientProfile() {
   const patientGetDietitianById = useSelector(state => state.patientGetDietitianById);
 
   useEffect(() => {
-    console.log(patientGetDietitianById);
     patientGetDietitianById.data && setAssignedDietitian(patientGetDietitianById.data.name);
   }, [patientGetDietitianById]);
 
@@ -118,7 +117,6 @@ export default function PatientProfile() {
       age: `${control.age}`,
       weight: `${control.weight}`,
     };
-    console.log(payload);
     dispatch(editPatient(endpoint, payload));
     setEditted(true);
   };

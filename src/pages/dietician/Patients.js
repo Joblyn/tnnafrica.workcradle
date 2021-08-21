@@ -55,7 +55,7 @@ export default function Patients() {
         className="m-0"
       >
         {patients && patients.length ? (
-          patients.map((patient, i) => {
+          patients.reverse().map((patient, i) => {
             return (
               <Col className="p-0" key={`patient-${i + 1}`}>
                 <Card small className="p-3">

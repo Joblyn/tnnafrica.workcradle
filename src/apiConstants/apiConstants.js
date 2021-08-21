@@ -1,7 +1,5 @@
-let localUrl = 'https://dev-workcradle.herokuapp.com/api/';
-// let localUrl = 'https://cmsbackv1.herokuapp.com/api/v1/';
-let prodUrl = 'https://dev-workcradle.herokuapp.com/api/';
-// let prodUrl = 'https://cmsbackv1.herokuapp.com/api/v1/';
+let localUrl = 'https://workcradle.herokuapp.com/api/';
+let prodUrl = 'https://workcradle.herokuapp.com/api/';
 
 export let baseUrl = process.env.NODE_ENV === 'production' ? prodUrl : localUrl;
 
@@ -50,11 +48,6 @@ export let getItakeFormsEndpoint = 'IntakeForm/GetIntakeForm/';
 export let createIntakeInfoEndpoint = 'IntakeInformation/CreateIntakeInformation/';
 export let getIntakeInfosEndpoint = 'IntakeInformation/GetIntakeInformation/';
 export let deleteProgressFormEndpoint = 'IntakeInformation/DeleteIntakeInformation/';
-// https://dev-workcradle.herokuapp.com/api/IntakeInformation/DeleteIntakeInformation/:intakeInformationId
-// https://dev-workcradle.herokuapp.com/api/IntakeInformation/GetIntakeInformation/;
-// https://dev-workcradle.herokuapp.com/api/IntakeInformation/CreateIntakeInformation/
-// https://dev-workcradle.herokuapp.com/api/IntakeForm/CreateIntakeForm/:patientId;
-// https://dev-workcradle.herokuapp.com/api/IntakeForm/GetIntakeForm/
 
 // appointment
 export let createAppointmentEndpoint = 'Appointment/CreateAppointment/';

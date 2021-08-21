@@ -161,7 +161,7 @@ export default function DietitianDocuments() {
                   </tr>
                 </thead>
                 <tbody>
-                  {searchItems.map((document, id) => {
+                  {searchItems.reverse().map((document, id) => {
                     let d = new Date(document.Document.createdAt)
                     return (
                       <tr>
@@ -178,6 +178,7 @@ export default function DietitianDocuments() {
                             theme="success"
                             className="mr-lg-3"
                             href={document.Document.docContentUrl}
+                            download
                             target="_blank"
                           >
                             View

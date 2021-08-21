@@ -155,7 +155,7 @@ export default function PatientDietPlan() {
                   </tr>
                 </thead>
                 <tbody>
-                  {searchItems.map((document, id) => (
+                  {searchItems.reverse().map((document, id) => (
                     <tr>
                       <td>{id + 1}</td>
                       <td>{document.Patient.name}</td>

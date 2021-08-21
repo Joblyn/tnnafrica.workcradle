@@ -20,10 +20,6 @@ export default function PatientIntakeForms() {
     intakeForms.isSuccessful && setItems(intakeForms.data.results.filter(item => item.createdBy === dietitian.id));  
   }, [intakeForms]);  
 
-  useEffect(() => {
-    console.log('items', items);
-  }, [items]);
-
   if(!items) {
     return <PageSpinner />
   }
@@ -40,7 +36,7 @@ export default function PatientIntakeForms() {
       </Row>
       {items.length ? 
       <Row>
-          {items.map(item => <Card>
+          {items.reverse().map(item => <Card>
             <CardHeader></CardHeader>
           </Card>)}
       </Row> : <p className="text-muted"><em>No intake forms created for patient</em></p>

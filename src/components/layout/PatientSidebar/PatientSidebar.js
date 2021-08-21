@@ -33,7 +33,7 @@ class PatientSidebar extends React.Component {
     this.setState({
       ...this.state,
       menuVisible: Store.getMenuState(),
-      sidebarNavItems: Store.getSidebarItems()
+      sidebarNavItems: Store.getPatientSidebarItems()
     });
   }
 
