@@ -46,7 +46,6 @@ export default function DietitianDietPlans() {
         )
       );
   }, [documents]);
-  console.log(documentsState);
 
   useEffect(() => {
     documentsState && setSearchItems(documentsState);

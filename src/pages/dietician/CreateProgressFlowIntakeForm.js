@@ -53,6 +53,7 @@ export default function CreateProgressFlowIntakeForm() {
     let arr = [...formItems];
     let items = arr.map((item) => {
       delete item.component;
+      delete item.default;
       return { ...item };
     });
     let payload = {
