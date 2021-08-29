@@ -21,13 +21,15 @@ export default [
   },
   {
     type: "checkbox",
-    title: "Multiple Choice(Checkbox)",
+    title: "Multiple Choice (Checkbox)",
+    default: ["a", "b", "c"],
     options: ["a", "b", "c"],
     component: CheckboxGroup,
   },
   {
     type: "radio",
-    title: "Multiple Choice",
+    title: "Multiple Choice (Radio)",
+    default: ["a", "b", "c"],
     options: ["a", "b", "c"],
     component: RadioInputGroup,
   },

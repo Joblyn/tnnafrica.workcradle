@@ -27,7 +27,6 @@ export default function FormBuilder({ setModal, setError }) {
 
   useEffect(() => {
     formItems && setFormItemsState(formItems);
-    console.log(formItems);
   }, [formItems]);
 
   const removeItem = (id) => {
@@ -62,12 +61,10 @@ export default function FormBuilder({ setModal, setError }) {
   };
 
   const onCheckedChange = (target, i) => {
-    console.log(target.checked);
     dispatch(setRequired(target.checked, i));
   };
 
   const handleClick = () => {
-    console.log('here');
     // for (var i = 0; i < formItemsState.length; i++) {
     //   console.log(Object.values(i));
     //   let results = Object.values(i);
@@ -91,8 +88,7 @@ export default function FormBuilder({ setModal, setError }) {
         </CardHeader>
 
         <Form id="progress-intake-form" className="py-3">
-          {/* <Row> */}
-          {formItemsState.length > 0
+          {formItemsState.length
             ? formItemsState.map((item, i) => (
                 <FormGroup
                   className={`px-4 pt-3 pb-3 mb-0 custom-form-item position-relative ${
@@ -137,15 +133,14 @@ export default function FormBuilder({ setModal, setError }) {
                   </div>
                 </FormGroup>
               ))
-            : ""}
-          {/* </Row> */}
-          {formItemsState.length && (
+            : <span className="text-muted p-4">Create Patient Intake Form</span>}
+          {formItemsState.length ? (
             <div className="m-3">
               <Button outline size="sm" onClick={handleClick}>
                 Select patient to upload
-              </Button>{" "}
+              </Button>
             </div>
-          )}
+          ) : ''}
         </Form>
       </Card>
     </Col>

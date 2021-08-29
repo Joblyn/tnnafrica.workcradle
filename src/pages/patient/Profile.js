@@ -99,7 +99,6 @@ export default function PatientProfile() {
   useEffect(() => {
     if (patient.assignedDietitian) {
       let endpoint = getDietitianByIdEndpoint + patient.assignedDietitian;
-      console.log(endpoint);
       dispatch(getDietitianById(endpoint));
     }
   }, []);

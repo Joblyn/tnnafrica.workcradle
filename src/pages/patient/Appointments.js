@@ -18,8 +18,8 @@ import {
 import PageTitle from "../../components/common/PageTitle";
 import {
   getAppointmentsEndpoint,
-  updateAppointmentEdnpoint,
-  deleteAppointmentEndpoint
+  deleteAppointmentEndpoint,
+  updateAppointmentEdnpoint
 } from "../../apiConstants/apiConstants";
 import {
   getAppointments,
@@ -112,32 +112,33 @@ export default function Appointments() {
 
   const [updated, setUpdated] = useState(false);
 
-  // const onUpdateAppointment = (id, type) => {
-  //   const payload = { ...appointments[id].Appointment };
-  //   if (type === "accept") {
-  //     payload.isDeleted = false;
-  //     payload.isAccepted = true;
-  //   } else if (type === "reject") {
-  //     payload.isAccepted = false;
-  //     payload.isDeleted = true;
-  //   }
-  //   delete payload.createdAt;
-  //   delete payload.upDatedAt;
-  //   let endpoint = updateAppointmentEdnpoint + payload.id;
-  //   delete payload.id;
-  //   dispatch(updateAppointment(endpoint, payload));
-  //   setUpdated(true);
-  // };
+  const onUpdateAppointment = (id, type) => {
+    const payload = { ...appointments[id].Appointment };
+    if (type === "accept") {
+      payload.isAccepted = true;
+      payload.isDeleted = false;
+    } else if (type === "reject") {
+      payload.isAccepted = false;
+      payload.isDeleted = true;
+    }
+    delete payload.createdAt;
+    delete payload.upDatedAt;
+    let endpoint = updateAppointmentEdnpoint + payload.id;
+    delete payload.id;
+    console.log(payload);
+    dispatch(updateAppointment(endpoint, payload));
+    setUpdated(true);
+  };
 
   const updateAppointmentState = useSelector(
     (state) => state.updateAppointment
   );
 
   useEffect(() => {
-    if (updated && updateAppointment.data) {
+    if (updated && updateAppointment.isSuccessful) {
       setTimeout(() => {
         window.location.reload();
-      }, 1500);
+      }, 1000);
     }
   }, [updateAppointmentState, updated]);
 
@@ -179,7 +180,7 @@ export default function Appointments() {
           className="text-sm-left"
         />
       </Row>
-      <Col style={{ minHeight: "60vh" }} className="pb-5">
+      <Col style={{ minHeight: "70vh" }} className="pb-5">
         {formPopup && (
           <div
             className="position-fixed d-flex justify-content-center align-items-center"
@@ -213,7 +214,7 @@ export default function Appointments() {
             gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
           }}
         >
-          <Card className="p-3" style={{ height: "fit-content" }}>
+          {/* <Card className="p-3" style={{ height: "fit-content" }}>
             <Button
               outline
               className="text-center"
@@ -223,7 +224,7 @@ export default function Appointments() {
               <div style={{ fontSize: "3rem", fontWeight: 600 }}>+</div>
               Create Appointment
             </Button>
-          </Card>
+          </Card> */}
           {appointments.length
             ? appointments.reverse().map((item, id) => {
                 let d = new Date(`${item.Appointment.appointmentDate}`);
@@ -309,10 +310,11 @@ export default function Appointments() {
                     </div>
                     <CardFooter className="border-top px-5">
                       <div className="row">
-                        <div className="mr-3">
+                        <div className="">
+                        <span className="mr-3">Dietitian:</span>
                           <span>{item.Dietitian.name}</span>
                         </div>
-                        {/* {!(
+                        {!(
                           item.Appointment.isAccepted ||
                           item.Appointment.isDeleted
                         ) && (
@@ -336,7 +338,7 @@ export default function Appointments() {
                               Reject
                             </Button>
                           </div>
-                        )} */}
+                        )}
                       </div>
                     </CardFooter>
                   </Card>

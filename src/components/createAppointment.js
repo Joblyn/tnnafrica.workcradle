@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { createAppointmentEndpoint } from '../apiConstants/apiConstants';
-import {createAppointment } from '../actions/patient/patient';
+import { createAppointmentEndpoint } from "../apiConstants/apiConstants";
+import { createAppointment } from "../actions/patient/patient";
 import { useDispatch } from "react-redux";
 import {
   Card,
@@ -11,28 +11,37 @@ import {
   FormInput,
   Col,
   FormTextarea,
-  Button,
+  Button
 } from "shards-react";
+import CustomSelect from "./components-overview/CustomSelect";
 
-export default function CreateAppointment({ setFormPopup, dietitian, patient, setSubmitted }) {
+export default function CreateAppointment({
+  setFormPopup,
+  patients,
+  user,
+  setSubmitted
+}) {
   const [control, setControl] = useState({});
   const dispatch = useDispatch();
   const handleChange = ({ target }) => {
     setControl({ ...control, [target.name]: target.value });
   };
+  const [selectedPatient, setSelectedPatient] = useState();
 
   const submit = (e) => {
     e.preventDefault();
     const { date, hour, minute } = control;
-    const appointmentDate = `${date}T${hour.length < 2 ? "0" + hour : hour}:${minute.length < 2 ? "0" + minute : minute}:00.000Z`;
-    const payload = { 
+    const appointmentDate = `${date}T${hour.length < 2 ? "0" + hour : hour}:${
+      minute.length < 2 ? "0" + minute : minute
+    }:00.000Z`;
+    const payload = {
       ...control,
       appointmentDate,
-      createdFor: patient.id,
-      createdBy: patient.assignedDietitian,
-      companyCode: patient.companyCode,
+      createdFor: selectedPatient,
+      createdBy: user.id,
+      companyCode: user.companyCode,
       isAccepted: false,
-      isDeleted: false,
+      isDeleted: false
     };
     delete payload.date;
     delete payload.hour;
@@ -42,7 +51,10 @@ export default function CreateAppointment({ setFormPopup, dietitian, patient, se
   };
 
   return (
-    <Card className="pb-4 position-absolute" style={{ width: "90%", maxWidth: "700px", top: 80 }}>
+    <Card
+      className="pb-4 position-absolute"
+      style={{ width: "90%", maxWidth: "700px", top: 80 }}
+    >
       <CardHeader className="border-bottom">Create Appointment</CardHeader>
       <span
         className="material-icons-outlined text-muted text-sm-center"
@@ -50,7 +62,7 @@ export default function CreateAppointment({ setFormPopup, dietitian, patient, se
           position: "absolute",
           top: 20,
           right: 20,
-          cursor: "pointer",
+          cursor: "pointer"
         }}
         onClick={() => setFormPopup(false)}
       >
@@ -58,7 +70,15 @@ export default function CreateAppointment({ setFormPopup, dietitian, patient, se
       </span>
       <Col className="">
         <Form id="createAppointment" onSubmit={submit}>
-          <Row className="pt-2 pb-3">
+          <FormGroup className="pt-2 pb-3">
+            <label>Patient</label>
+            {patients && <CustomSelect
+                label="Patient"
+                options={patients}
+                setSelectedPatient={setSelectedPatient}
+             />}
+          </FormGroup>
+          <Row className="pb-3">
             <Col className="col-md-6 col-12">
               <FormGroup>
                 <label className="text-muted">Date</label>
@@ -113,24 +133,24 @@ export default function CreateAppointment({ setFormPopup, dietitian, patient, se
           <Row>
             <Col md="4">
               <FormGroup>
-              <label className="text-muted">Platform</label>
-              <FormInput
-              placeholder="Zoom"
-              name="appointmentPlatform"
-              required
-              onChange={handleChange}
-            />
+                <label className="text-muted">Platform</label>
+                <FormInput
+                  placeholder="Zoom"
+                  name="appointmentPlatform"
+                  required
+                  onChange={handleChange}
+                />
               </FormGroup>
             </Col>
             <Col md="8">
-            <FormGroup>
-              <label className="text-muted">Link</label>
-              <FormInput
-              placeholder="https://zoom.us/"
-              name="appointmentPlatformLink"
-              required
-              onChange={handleChange}
-            />
+              <FormGroup>
+                <label className="text-muted">Link</label>
+                <FormInput
+                  placeholder="https://zoom.us/"
+                  name="appointmentPlatformLink"
+                  required
+                  onChange={handleChange}
+                />
               </FormGroup>
             </Col>
           </Row>

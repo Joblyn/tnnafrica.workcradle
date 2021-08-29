@@ -9,7 +9,6 @@ import {
   Row,
   Col,
   Card,
-  // Button,
   CardBody,
   CardFooter,
   DropdownItem,
@@ -179,7 +178,7 @@ export default function Appointments() {
           className="text-sm-left"
         />
       </Row>
-      <Col style={{ minHeight: "60vh" }} className="pb-5">
+      <Col style={{ minHeight: "70vh" }} className="pb-5">
         {formPopup && (
           <div
             className="position-fixed d-flex justify-content-center align-items-center"
@@ -309,7 +308,7 @@ export default function Appointments() {
                       )}
                     </div>
                     <CardFooter className="border-top px-4">
-                      <div className="">
+                      <div>
                         <div>
                           <span className="mr-3">Dietitian:</span>{" "}
                           <span className="text-muted">

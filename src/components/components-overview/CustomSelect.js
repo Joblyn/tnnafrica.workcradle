@@ -3,7 +3,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  FormSelect,
+  FormSelect
 } from "shards-react";
 
 const CustomSelect = ({
@@ -13,7 +13,7 @@ const CustomSelect = ({
   setSelectedPatient,
   handleChange,
   disabled,
-  type,
+  type
 }) => (
   <div>
     <InputGroup className={`${type === "edit" ? "mb-0" : ""}`}>
@@ -22,7 +22,7 @@ const CustomSelect = ({
       </InputGroupAddon>
       <FormSelect
         required
-        onChange={({target}) => setSelectedPatient(target.value)}
+        onChange={({ target }) => setSelectedPatient(target.value)}
         disabled={disabled}
         style={{ background: "transparent" }}
         name="patient"
@@ -30,11 +30,11 @@ const CustomSelect = ({
         <option value="" onClick={() => setSelectedPatient("")}>
           Select Patient
         </option>
-        {(options && typeof(options[0]) === 'object')
-          ? options.map((option) => {
-              console.log(option);
+        {options && typeof options[0] === "object"
+          ? options.map((option, id) => {
               return (
                 <option
+                  key={`option-${id + 1}`}
                   value={option.Patient.id}
                   onClick={() => setSelectedPatient(option.Patient.id)}
                 >
@@ -42,10 +42,12 @@ const CustomSelect = ({
                 </option>
               );
             })
-          : options && options.map((option) => (
+          : options &&
+            options.map((option, id) => (
               <option
                 value={option}
                 selected={selected === option ? "selected" : false}
+                key={`option-${id + 1}`}
               >
                 {option}
               </option>

@@ -79,7 +79,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../images/bg.jpg');
-  height: calc(100vh - 71.8px);
+  min-height: calc(100vh - 71.8px);
 }
 
 .cr-page-spinner {

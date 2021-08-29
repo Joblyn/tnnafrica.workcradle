@@ -2,7 +2,6 @@ import * as ActionTypes from "../../actions/Types";
 import { createDietitian } from "../initialState";
 
 const createDietitianReducer = (state = createDietitian, action) => {
-  console.log(action.type);
   switch (action.type) {
     case ActionTypes.CREATE_DIETICIAN_SUCCESS:
       return {

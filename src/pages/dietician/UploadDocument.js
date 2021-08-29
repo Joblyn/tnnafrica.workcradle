@@ -31,7 +31,6 @@ export default function UploadDocument() {
   const [docName, setDocName] = useState();
 
   useEffect(() => {
-    console.log(dietitian);
     let endpoint = getPatients + dietitian.companyCode;
     dispatch(getAllPatients(endpoint));
   }, []);
@@ -50,8 +49,6 @@ export default function UploadDocument() {
     e.preventDefault();
     const formData = new FormData();
     const inpFile = document.getElementById("file");
-    console.log(inpFile.files[0]);
-    console.log(createdFor);
 
     formData.append("docName", docName);
     formData.append("fileUpload", inpFile.files[0]);
@@ -76,11 +73,8 @@ export default function UploadDocument() {
         Authorization: bearerToken,
       },
     })
-      .then((res) => {
-        console.log(res);
-        return res.json();
-      })
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         nProgress.done();
         nProgress.remove();
         console.log(data);

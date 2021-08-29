@@ -60,7 +60,7 @@ export default function FormItemCatalogue({ show, setShow }) {
               </label>
               <item.component
                 type={item.type}
-                options={item.options}
+                options={item.default}
                 disabled
                 key={`item-${i + 1}`}
                 className="bg-white cursor-pointer"

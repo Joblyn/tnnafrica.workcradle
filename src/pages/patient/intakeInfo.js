@@ -133,7 +133,7 @@ export default function IntakeInfo() {
           className="text-sm-left"
         />
       </Row>
-      <Col style={{ minHeight: "60vh" }}>
+      <Col style={{ minHeight: "70vh" }}>
         {infos && infos.length ? (
           <Row
             style={{

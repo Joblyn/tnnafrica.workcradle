@@ -19,7 +19,8 @@ import PageTitle from "../../components/common/PageTitle";
 import {
   getAppointmentsEndpoint,
   updateAppointmentEdnpoint,
-  deleteAppointmentEndpoint
+  deleteAppointmentEndpoint,
+  getPatients
 } from "../../apiConstants/apiConstants";
 import {
   getAppointments,
@@ -28,6 +29,7 @@ import {
 } from "../../actions/patient/patient";
 import PageSpinner from "../../components/common/PageSpinner";
 import CreateAppointment from "../../components/createAppointment";
+import { getAllPatients } from "../../actions/superadmin/patients";
 
 const D = styled(DropdownItem)`
   display: none;
@@ -60,8 +62,10 @@ export default function Appointments() {
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    let endpoint = getAppointmentsEndpoint + user.companyCode;
-    dispatch(getAppointments(endpoint));
+    let appointmentsEndpoint = getAppointmentsEndpoint + user.companyCode;
+    let patientsEndpoint = getPatients + user.companyCode;
+    dispatch(getAppointments(appointmentsEndpoint));
+    dispatch(getAllPatients(patientsEndpoint));
   }, []);
 
   useEffect(() => {
@@ -74,10 +78,6 @@ export default function Appointments() {
   useEffect(() => {
     appointmentsState && setAppointments(appointmentsState);
   }, [appointmentsState]);
-
-  useEffect(() => {
-    console.log("apps", appointments);
-  }, [appointments]);
 
   useEffect(() => {
     if (createAppointmentState && submitted) {
@@ -157,6 +157,18 @@ export default function Appointments() {
     }
   }, [deleteAppointmentState, deleted]);
 
+  const [patients, setPatients] = useState();
+  const allPatients = useSelector((state) => state.allPatients);
+
+  useEffect(() => {
+    setPatients(
+      allPatients.data &&
+        allPatients.data.filter(
+          (item) => item.Patient.assignedDietitian === user.id
+        )
+    );
+  }, [allPatients]);
+
   if (!appointments) {
     return <PageSpinner />;
   }
@@ -179,7 +191,7 @@ export default function Appointments() {
           className="text-sm-left"
         />
       </Row>
-      <Col style={{ minHeight: "60vh" }} className="pb-5">
+      <Col style={{ minHeight: "70vh" }} className="pb-5">
         {formPopup && (
           <div
             className="position-fixed d-flex justify-content-center align-items-center"
@@ -190,13 +202,14 @@ export default function Appointments() {
               width: "100vw",
               minHeight: "100%",
               background: "rgba(0,0,0,.12)",
+              overflowY: "auto"
             }}
           >
             <CreateAppointment
-              patient={user}
+              user={user}
               setFormPopup={setFormPopup}
               setSubmitted={setSubmitted}
-              dietitian
+              patients={patients}
             />
           </div>
         )}
@@ -214,7 +227,7 @@ export default function Appointments() {
             gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
           }}
         >
-          {/* <Card className="p-3" style={{ height: "fit-content" }}>
+          <Card className="p-3" style={{ height: "fit-content" }}>
             <Button
               outline
               className="text-center"
@@ -224,7 +237,7 @@ export default function Appointments() {
               <div style={{ fontSize: "3rem", fontWeight: 600 }}>+</div>
               Create Appointment
             </Button>
-          </Card> */}
+          </Card>
           {appointments.length
             ? appointments.reverse().map((item, id) => {
                 let d = new Date(`${item.Appointment.appointmentDate}`);
@@ -275,7 +288,7 @@ export default function Appointments() {
                         <span className="ml-1 text-muted">{`${item.Appointment.appointmentDuration}`}</span>
                       </div>
                       <div style={{ maxHeight: 70, overflowY: "auto" }}>
-                        Note:{" "}
+                        Note:
                         <span className="text-muted">
                           {item.Appointment.appointmentNotes}
                         </span>
@@ -310,10 +323,11 @@ export default function Appointments() {
                     </div>
                     <CardFooter className="border-top px-5">
                       <div className="row">
-                        <div className="mr-3">
+                        <div className="">
+                        <span className="mr-3">Patient:</span>
                           <span>{item.Patient.name}</span>
                         </div>
-                        {!(
+                        {/* {!(
                           item.Appointment.isAccepted ||
                           item.Appointment.isDeleted
                         ) && (
@@ -337,7 +351,7 @@ export default function Appointments() {
                               Reject
                             </Button>
                           </div>
-                        )}
+                        )} */}
                       </div>
                     </CardFooter>
                   </Card>

@@ -37,7 +37,6 @@ export default function CreateProgressFlowIntakeForm() {
   useEffect(() => {
     let endpoint = getPatients + dietitian.companyCode;
     dispatch(getAllPatients(endpoint));
-    console.log("here");
   }, []);
 
   useEffect(() => {
@@ -49,12 +48,9 @@ export default function CreateProgressFlowIntakeForm() {
     );
   }, [allPatients]);
 
-  console.log("patients", patients);
-
   const handleSubmit = () => {
     let endpoint = createIntakeFormEndpoint + selectedPatient;
     let arr = [...formItems];
-    console.log(formItems);
     let items = arr.map((item) => {
       delete item.component;
       return { ...item };
@@ -64,8 +60,6 @@ export default function CreateProgressFlowIntakeForm() {
       createdFor: selectedPatient,
       form: items,
     };
-    console.log("endpoint", endpoint);
-    console.log("payload", payload);
     dispatch(createIntakeForm(endpoint, payload));
     setSubmitted(true);
   };
@@ -74,7 +68,6 @@ export default function CreateProgressFlowIntakeForm() {
     if (submitted && createIntakeFormState.isSuccessful) {
       setAlert(true);
     }
-    console.log(createIntakeFormState);
   }, [createIntakeFormState, submitted]);
 
   useEffect(() => {

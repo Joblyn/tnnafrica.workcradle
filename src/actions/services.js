@@ -32,9 +32,7 @@ export const getData = (url, done) => {
 
 export const getDataWithToken = (url, done) => {
   const endpoint = baseUrl + url;
-  console.log(endpoint);
   const token = JSON.parse(localStorage.getItem("tokens")).access.token;
-  console.log(token);
   const bearerToken = "Bearer " + token;
   nprogress.start();
   return (dispatch) => {
@@ -103,7 +101,6 @@ export const deleteData = (url, done) => {
       },
     })
       .then((res) => {
-        console.log(res);
         return res;
       })
       .then((data) => {

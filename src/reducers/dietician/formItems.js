@@ -4,7 +4,6 @@ import { formItemsState } from "../initialState";
 export const formItems = (state = formItemsState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_FORM_ITEM:
-      delete action.payload.title;
       return [...state, { ...action.payload, field: "", required: false }];
     case ActionTypes.REMOVE_FORM_ITEM:
       return [
