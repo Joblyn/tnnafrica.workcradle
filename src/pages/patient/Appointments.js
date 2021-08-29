@@ -13,7 +13,7 @@ import {
   CardBody,
   CardFooter,
   DropdownItem,
-  Alert,
+  Alert
 } from "shards-react";
 import PageTitle from "../../components/common/PageTitle";
 import {
@@ -148,12 +148,14 @@ export default function Appointments() {
     let endpoint = deleteAppointmentEndpoint + id;
     dispatch(deleteAppointment(endpoint));
     setDeleted(true);
-  }
+  };
 
-  const deleteAppointmentState = useSelector(state => state.deleteAppointment);
+  const deleteAppointmentState = useSelector(
+    (state) => state.deleteAppointment
+  );
 
   useEffect(() => {
-    if(deleted && deleteAppointmentState.isSuccessful) {
+    if (deleted && deleteAppointmentState.isSuccessful) {
       setTimeout(window.location.reload(), 1500);
     }
   }, [deleteAppointmentState, deleted]);
@@ -190,7 +192,7 @@ export default function Appointments() {
               zIndex: 500,
               width: "100vw",
               minHeight: "100%",
-              background: "rgba(0,0,0,.12)",
+              background: "rgba(0,0,0,.12)"
             }}
           >
             <CreateAppointment
@@ -211,7 +213,7 @@ export default function Appointments() {
           style={{
             display: "grid",
             gridGap: "20px",
-            gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
+            gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))"
           }}
         >
           {/* <Card className="p-3" style={{ height: "fit-content" }}>
@@ -311,7 +313,7 @@ export default function Appointments() {
                     <CardFooter className="border-top px-5">
                       <div className="row">
                         <div className="">
-                        <span className="mr-3">Dietitian:</span>
+                          <span className="mr-3">Dietitian:</span>
                           <span>{item.Dietitian.name}</span>
                         </div>
                         {!(
