@@ -8,9 +8,11 @@ import avatar1 from "../../images/avatars/1.jpg";
 import { getAllPatients } from "../../actions/superadmin/patients";
 import { getPatients } from "../../apiConstants/apiConstants";
 import PageSpinner from "../../components/common/PageSpinner";
+import ExcelTable from "../../components/exportToExcel";
 
 export default function CompanyPatients() {
-  let companyCode = JSON.parse(localStorage.getItem("loggedInUser")).companyCode;
+  let companyCode = JSON.parse(localStorage.getItem("loggedInUser"))
+    .companyCode;
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -21,14 +23,14 @@ export default function CompanyPatients() {
     let endpoint = getPatients + companyCode;
     dispatch(getAllPatients(endpoint));
   }, []);
-  
+
   useEffect(() => {
     console.log(allPatients.data && allPatients.data);
-    allPatients.data && setPatients( allPatients.data);
+    allPatients.data && setPatients(allPatients.data);
   }, [allPatients]);
 
-  if(!patients) {
-    return <PageSpinner />
+  if (!patients) {
+    return <PageSpinner />;
   }
 
   return (
@@ -40,13 +42,19 @@ export default function CompanyPatients() {
           subtitle="Dashboard"
           className="text-sm-left"
         />
+        <ExcelTable
+          exportData={patients.reverse()}
+          id="patients"
+          fileName="Patients_Sheet"
+          exportHead="ALL PATIENTS"
+        />
       </Row>
       <Row
         style={{
           display: "grid",
           gridGap: "20px",
           gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))",
-          minHeight: '65vh',
+          minHeight: "65vh"
         }}
         className="m-0"
       >
@@ -62,7 +70,7 @@ export default function CompanyPatients() {
                           position: "absolute",
                           top: "10px",
                           right: "10px",
-                          color: "#660066",
+                          color: "#660066"
                         }}
                       >
                         {patient.Dietitian !== undefined
@@ -108,15 +116,38 @@ export default function CompanyPatients() {
                           height: "38px",
                           // whiteSpace: "nowrap",
                           overflow: "hidden",
-                          textOverflow: "ellipsis",
+                          textOverflow: "ellipsis"
                           // lineClamp: "2",
                         }}
-                        className="mb-2"
+                        className="mb-0"
                       >
                         {patient.Patient.healthCondition &&
                           patient.Patient.healthCondition.join(", ").toString()}
                       </p>
                     </div>
+                  </div>
+                  <div>
+                    <strong
+                      className="text-muted d-block mb-1 mt-2"
+                      style={{ fontSize: ".955rem" }}
+                    >
+                      Food Preference
+                    </strong>
+                    <p
+                      style={{
+                        fontSize: ".85rem",
+                        lineHeight: "1.2rem",
+                        width: "100%",
+                        height: "38px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        lineClamp: "2"
+                      }}
+                      className="mb-2"
+                    >
+                      {patient.Patient.foodPreference &&
+                        patient.Patient.foodPreference.join(", ").toString()}
+                    </p>
                   </div>
                   <Button
                     pill
@@ -125,7 +156,10 @@ export default function CompanyPatients() {
                     className="mb-2"
                     style={{ fontSize: ".85rem" }}
                     onClick={() => {
-                      localStorage.setItem("patient", JSON.stringify(patient.Patient));
+                      localStorage.setItem(
+                        "patient",
+                        JSON.stringify(patient.Patient)
+                      );
                       history.push("/admin/patient/details");
                     }}
                   >
@@ -138,7 +172,6 @@ export default function CompanyPatients() {
         ) : (
           <h5 className="text-muted">No patients registered.</h5>
         )}
-        
       </Row>
     </Container>
   );

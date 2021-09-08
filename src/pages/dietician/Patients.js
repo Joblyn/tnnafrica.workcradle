@@ -8,6 +8,7 @@ import avatar1 from "../../images/avatars/1.jpg";
 import { getPatients } from "../../apiConstants/apiConstants";
 import { getAllPatients } from "../../actions/superadmin/patients";
 import PageSpinner from "../../components/common/PageSpinner";
+import ExcelTable from "../../components/exportToExcel";
 
 export default function Patients() {
   const history = useHistory();
@@ -44,6 +45,13 @@ export default function Patients() {
           subtitle="Dashboard"
           className="text-sm-left"
         />
+        <ExcelTable
+          exportData={patients.reverse()}
+          id="patients"
+          fileName="Patients_Sheet"
+          exportHead="ALL PATIENTS"
+          dietitian
+        />
       </Row>
       <Row
         style={{
@@ -61,18 +69,6 @@ export default function Patients() {
                 <Card small className="p-3">
                   <CardHeader className="border-bottom text-center">
                     <div className="mb-3 mx-auto">
-                      {/* <p
-                        style={{
-                          position: "absolute",
-                          top: "10px",
-                          right: "10px",
-                          color: "#660066",
-                        }}
-                      >
-                        {patient.PassignedDietitian !== undefined
-                          ? "Assigned"
-                          : "Unassigned"}
-                      </p> */}
                       <img
                         className="rounded-circle"
                         src={avatar1}
@@ -110,15 +106,37 @@ export default function Patients() {
                           lineHeight: "1.2rem",
                           width: "100%",
                           height: "38px",
-                          // whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          lineClamp: "2",
+                        }}
+                        className="mb-0"
+                      >
+                        {patient.Patient.healthCondition &&
+                          patient.Patient.healthCondition.join(", ").toString()}
+                      </p>
+                    </div>
+                    <div>
+                      <strong
+                        className="text-muted d-block mb-1 mt-2"
+                        style={{ fontSize: ".955rem" }}
+                      >
+                        Food Preference
+                      </strong>
+                      <p
+                        style={{
+                          fontSize: ".85rem",
+                          lineHeight: "1.2rem",
+                          width: "100%",
+                          height: "38px",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           lineClamp: "2",
                         }}
                         className="mb-2"
                       >
-                        {patient.Patient.healthCondition &&
-                          patient.Patient.healthCondition.join(", ").toString()}
+                        {patient.Patient.foodPreference &&
+                          patient.Patient.foodPreference.join(", ").toString()}
                       </p>
                     </div>
                   </div>

@@ -16,7 +16,7 @@ export default function PatientDocs({
           <CardHeader className="border-bottom">Documents</CardHeader>
           <CardBody>
             {patient.document
-              ? patient.document.length && (
+              ? patient.document.length ? (
                   <table className="table mb-0">
                     <thead className="bg-light">
                       <th scope="col" className="border-0">
@@ -72,7 +72,7 @@ export default function PatientDocs({
                       ))}
                     </tbody>
                   </table>
-                )
+                ) : <span className="text-muted">No documents for patient</span>
               : ""}
           </CardBody>
         </Card>

@@ -102,7 +102,7 @@ export default function IntakeInfo({
           </Row>
         </CardBody>
       ) : (
-        ''
+        <span className="text-muted">No documents for patient</span>
       )}
     </Card>
   );
