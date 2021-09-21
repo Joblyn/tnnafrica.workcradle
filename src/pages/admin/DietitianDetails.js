@@ -90,7 +90,6 @@ export default function DietitianDetails() {
     delete control.updatedAt;
     delete control.id;
     delete control.isSuperAdmin;
-    console.log(control);
     dispatch(updateDietitianData(endpoint, control));
     setUpdated(true);
   };

@@ -37,7 +37,6 @@ export default function AdminDocuments() {
   }, []);
 
   useEffect(() => {
-    console.log(documents);
     documents.data &&
       setDocumentsState(
         documents.data.filter((item) => item.Document.docType === "document")

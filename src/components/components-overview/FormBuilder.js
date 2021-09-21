@@ -66,7 +66,6 @@ export default function FormBuilder({ setModal, setError }) {
 
   const handleClick = () => {
     // for (var i = 0; i < formItemsState.length; i++) {
-    //   console.log(Object.values(i));
     //   let results = Object.values(i);
       // if((results === []) || (results.includes(""))) {
       //   setError(true);

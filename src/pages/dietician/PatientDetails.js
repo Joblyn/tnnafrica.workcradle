@@ -10,7 +10,7 @@ import {
   // FormGroup,
   CardBody,
   Alert,
-  FormInput,
+  FormInput
 } from "shards-react";
 import { useHistory } from "react-router";
 
@@ -21,13 +21,13 @@ import {
   deletePatientEndpoint,
   deleteDocumentEndpoint,
   getIntakeInfosEndpoint,
-  deleteProgressFormEndpoint,
+  deleteProgressFormEndpoint
 } from "../../apiConstants/apiConstants";
 import {
   getPatientByIdAction,
   editPatient,
   deletePatientAction,
-  getIntakeForms,
+  getIntakeForms
 } from "../../actions/dietician/patient";
 import PageSpinner from "../../components/common/PageSpinner";
 import avatar1 from "../../images/avatars/1.jpg";
@@ -68,7 +68,6 @@ export default function PatientDetails() {
   useEffect(() => {
     let endpoint = getPatientByIdEndpoint + patientId;
     dispatch(getPatientByIdAction(endpoint));
-    console.log(endpoint);
   }, []);
 
   useEffect(() => {
@@ -77,8 +76,7 @@ export default function PatientDetails() {
       setFoodPreference(patientById.data.patient.foodPreference);
       setHealthCondition(patientById.data.patient.healthCondition);
     }
-    console.log(patientById);
-  }, [patientById]);
+  }, []);
 
   const handleChange = ({ target }) => {
     setControl({ ...control, [target.name]: target.value });
@@ -113,7 +111,6 @@ export default function PatientDetails() {
 
   const submitChanges = () => {
     let endpoint = editPatientEndpoint + patientId;
-    console.log(endpoint);
     delete control.createdAt;
     delete control.updatedAt;
     delete control.id;
@@ -122,9 +119,8 @@ export default function PatientDetails() {
       healthCondition,
       foodPreference,
       age: `${control.age}`,
-      weight: `${control.weight}`,
+      weight: `${control.weight}`
     };
-    console.log(payload);
     dispatch(editPatient(endpoint, payload));
     setEditted(true);
   };
@@ -146,13 +142,12 @@ export default function PatientDetails() {
 
   const deletePatient = () => {
     let endpoint = deletePatientEndpoint + patientId;
-    console.log(endpoint);
     dispatch(deletePatientAction(endpoint));
     setDeleted(true);
   };
 
   const intakeForms = useSelector((state) => state.intakeForms);
-  const [intakeForm, setIntakeForm] = useState();
+  const [intakeForm, setIntakeForm] = useState([]);
 
   useEffect(() => {
     dispatch(getIntakeForms(getItakeFormsEndpoint));
@@ -160,9 +155,8 @@ export default function PatientDetails() {
 
   useEffect(() => {
     if (intakeForms.isSuccessful) {
-      let result = intakeForms.data.results.filter(
-        (item) =>
-          item.createdBy === dietitian.id && item.createdFor === patientId
+      let result = intakeForms.data.filter(
+        (item) => item.createdFor === patientId
       );
       setIntakeForm(result[0]);
     }
@@ -192,7 +186,7 @@ export default function PatientDetails() {
   useEffect(() => {
     intakeInfos.data &&
       setInfos(
-        intakeInfos.data.results.filter(
+        intakeInfos.data.filter(
           (item) =>
             item.createdFor === patientId && item.createdBy === dietitian.id
         )
@@ -251,7 +245,7 @@ export default function PatientDetails() {
           height: "100%",
           width: "100%",
           zIndex: 10,
-          background: "rgba(0,0,0,.24",
+          background: "rgba(0,0,0,.24"
         }}
       ></div>
       {deletePopup && (
@@ -263,7 +257,7 @@ export default function PatientDetails() {
             zIndex: 500,
             width: "100vw",
             height: "100vh",
-            background: "rgba(0,0,0,.12)",
+            background: "rgba(0,0,0,.12)"
           }}
         >
           <Card
@@ -272,7 +266,7 @@ export default function PatientDetails() {
               position: "absolute",
               zIndex: 1000,
               width: 400,
-              top: "30%",
+              top: "30%"
             }}
           >
             <div className="text-center">
@@ -312,7 +306,7 @@ export default function PatientDetails() {
             zIndex: 500,
             width: "100vw",
             height: "100vh",
-            background: "rgba(0,0,0,.12)",
+            background: "rgba(0,0,0,.12)"
           }}
         >
           (
@@ -322,7 +316,7 @@ export default function PatientDetails() {
               zIndex: 1000,
               maxHeight: "600px",
               overFlowY: "auto",
-              maxWidth: "500px",
+              maxWidth: "500px"
             }}
           >
             <CardHeader className="border-bottom">{`Progress form submitted on ${Date(
@@ -334,7 +328,7 @@ export default function PatientDetails() {
                 position: "absolute",
                 top: 20,
                 right: 20,
-                cursor: "pointer",
+                cursor: "pointer"
               }}
               onClick={() => setPFormPopup(false)}
             >
@@ -422,7 +416,7 @@ export default function PatientDetails() {
                             background: "transparent",
                             border: "none",
                             fontSize: "1rem",
-                            color: "#5a6169",
+                            color: "#5a6169"
                           }
                         : { fontSize: "1rem", color: "#5a6169" }
                     }
@@ -433,7 +427,7 @@ export default function PatientDetails() {
                 <Col className="d-flex flex-row align-items-center">
                   <h6 className="mr-2 mb-0">Weight:</h6>
                   <FormInput
-                    defaultValue={`${control.weight}`}
+                    defaultValue={`${control.weight}kg`}
                     disabled={!edit}
                     name="weight"
                     style={
@@ -441,7 +435,7 @@ export default function PatientDetails() {
                         ? {
                             background: "transparent",
                             border: "none",
-                            fontSize: "1rem",
+                            fontSize: "1rem"
                           }
                         : { fontSize: "1rem" }
                     }
@@ -492,7 +486,7 @@ export default function PatientDetails() {
                             background: "transparent",
                             border: "none",
                             fontSize: "1rem",
-                            color: "#5a6169",
+                            color: "#5a6169"
                           }
                         : { fontSize: "1rem", color: "#5a6169" }
                     }
@@ -540,7 +534,7 @@ export default function PatientDetails() {
                   options={[
                     "Basic Package",
                     "Platinum Package",
-                    "Premium Package",
+                    "Premium Package"
                   ]}
                   type="edit"
                   disabled={!edit}
@@ -566,7 +560,7 @@ export default function PatientDetails() {
                               : {
                                   width: 200,
                                   background: "transparent",
-                                  border: "none",
+                                  border: "none"
                                 }
                           }
                         />
@@ -601,7 +595,7 @@ export default function PatientDetails() {
                               : {
                                   width: 200,
                                   background: "transparent",
-                                  border: "none",
+                                  border: "none"
                                 }
                           }
                         />
@@ -656,7 +650,7 @@ export default function PatientDetails() {
             {/* </Col> */}
           </Card>
         </Col>
-        <Col md="8">
+        <Col md="8" className="mb-4">
           <PatientDocs
             patient={patientById.data}
             setDeletePopUp={setDeletePopup}

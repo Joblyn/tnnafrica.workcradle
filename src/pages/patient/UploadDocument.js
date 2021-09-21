@@ -34,7 +34,6 @@ export default function UploadDocument() {
     e.preventDefault();
     const formData = new FormData();
     const inpFile = document.getElementById("file");
-    console.log(inpFile.files[0]);
 
     if(!patient.assignedDietitian) {
       setPopUp(true);
@@ -53,8 +52,6 @@ export default function UploadDocument() {
       const token = JSON.parse(localStorage.getItem("tokens")).access.token;
       const bearerToken = "Bearer " + token;
       nProgress.start();
-      console.log(endpoint);
-      console.log(formData);
       fetch(endpoint, {
         method: "POST",
         body: formData,
@@ -62,14 +59,10 @@ export default function UploadDocument() {
           Authorization: bearerToken,
         },
       })
-        .then((res) => {
-          console.log(res);
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
           nProgress.done();
           nProgress.remove();
-          console.log(data);
           setSuccess(true);
           setIsLoading(false);
         })

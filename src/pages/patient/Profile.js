@@ -105,7 +105,6 @@ export default function PatientProfile() {
 
   const submitChanges = () => {
     let endpoint = editPatientEndpoint + patient.id;
-    console.log(endpoint);
     delete control.createdAt;
     delete control.updatedAt;
     delete control.id;
@@ -220,7 +219,7 @@ export default function PatientProfile() {
                 <Col className="d-flex flex-row align-items-center">
                   <h6 className="mr-2 mb-0">Weight:</h6>
                   <FormInput
-                    defaultValue={`${control.weight}`}
+                    defaultValue={`${control.weight}kg`}
                     disabled={!edit}
                     name="weight"
                     style={

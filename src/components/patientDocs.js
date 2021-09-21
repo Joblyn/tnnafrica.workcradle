@@ -12,7 +12,6 @@ export default function PatientDocs({
   return (
     patient && (
       <Card className="mb-5 mt-sm-5 mt-md-0">
-        <Card style={{ width: "100%" }}>
           <CardHeader className="border-bottom">Documents</CardHeader>
           <CardBody>
             {patient.document
@@ -37,9 +36,9 @@ export default function PatientDocs({
                         Actions
                       </th>
                     </thead>
-                    <tbody>
+                    <tbody style={{maxHeight: '600px', overflowY: 'auto'}}>
                       {patient.document.reverse().map((item, id) => (
-                        <tr>
+                        <tr key={`patient_doc_${id+1}`}>
                           <td>{id + 1}</td>
                           {admin && <td>{dietitian && dietitian}</td>}
                           <td>{item.docName}</td>
@@ -75,7 +74,6 @@ export default function PatientDocs({
                 ) : <span className="text-muted">No documents for patient</span>
               : ""}
           </CardBody>
-        </Card>
       </Card>
     )
   );

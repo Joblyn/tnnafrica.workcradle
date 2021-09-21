@@ -73,7 +73,6 @@ export default function Appointments() {
   }, [appointmentsState]);
 
   useEffect(() => {
-    console.log("apps", appointments);
   }, [appointments]);
 
   useEffect(() => {

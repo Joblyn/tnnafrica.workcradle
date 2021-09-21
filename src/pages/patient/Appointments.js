@@ -76,7 +76,6 @@ export default function Appointments() {
   }, [appointmentsState]);
 
   useEffect(() => {
-    console.log("apps", appointments);
   }, [appointments]);
 
   useEffect(() => {
@@ -125,7 +124,6 @@ export default function Appointments() {
     delete payload.upDatedAt;
     let endpoint = updateAppointmentEdnpoint + payload.id;
     delete payload.id;
-    console.log(payload);
     dispatch(updateAppointment(endpoint, payload));
     setUpdated(true);
   };

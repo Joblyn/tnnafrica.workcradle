@@ -29,7 +29,6 @@ export default function Patients() {
         (item) => item.Patient.assignedDietitian === dietitian.id
       )
     );
-    console.log(allPatients);
   }, [allPatients]);
 
   if (!patients) {

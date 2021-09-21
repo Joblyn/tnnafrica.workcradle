@@ -17,7 +17,7 @@ export default function PatientIntakeForms() {
   }, []);
 
   useEffect(() => {
-    intakeForms.isSuccessful && setItems(intakeForms.data.results.filter(item => item.createdBy === dietitian.id));  
+    intakeForms.isSuccessful && setItems(intakeForms.data.filter(item => item.createdBy === dietitian.id));  
   }, [intakeForms]);  
 
   if(!items) {

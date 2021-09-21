@@ -13,7 +13,6 @@ export default function PatientIntakeForm({ intakeForm, setFormPopUp }) {
   const [control, setControl] = useState();
   useEffect(() => {
     intakeForm && setControl(intakeForm.form);
-    console.log("form", intakeForm.form);
   }, [intakeForm]);
 
 

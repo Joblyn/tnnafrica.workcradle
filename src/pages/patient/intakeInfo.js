@@ -30,10 +30,9 @@ export default function IntakeInfo() {
   }, []);
 
   useEffect(() => {
-    intakeInfos.data && console.log(intakeInfos.data);
     intakeInfos.data &&
       setInfos(
-        intakeInfos.data.results.filter(
+        intakeInfos.data.filter(
           (item) => item.createdFor === patient.id
         )
       );

@@ -42,7 +42,6 @@ export default function UploadDocument() {
           (item) => item.Patient.assignedDietitian === dietitian.id
         )
     );
-    console.log(allPatients);
   }, [allPatients]);
 
   const submitForm = (e) => {
@@ -64,8 +63,6 @@ export default function UploadDocument() {
     const token = JSON.parse(localStorage.getItem("tokens")).access.token;
     const bearerToken = "Bearer " + token;
     nProgress.start();
-    console.log(endpoint);
-    console.log(formData);
     fetch(endpoint, {
       method: "POST",
       body: formData,
@@ -77,14 +74,12 @@ export default function UploadDocument() {
       .then(data => {
         nProgress.done();
         nProgress.remove();
-        console.log(data);
         setSuccess(true);
         setIsLoading(false);
       })
       .catch((err) => {
         nProgress.done();
         nProgress.remove();
-        console.log(err);
         alert("An error occured, please check internet connection try again");
         window.location.reload();
       });

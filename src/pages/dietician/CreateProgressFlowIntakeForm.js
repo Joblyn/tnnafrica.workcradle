@@ -122,7 +122,7 @@ export default function CreateProgressFlowIntakeForm() {
             >
               <fieldset>
                 {patients &&
-                  patients.reverse().map((item, id) => (
+                  patients.map((item, id) => (
                     <FormGroup
                       key={`item-${id + 1}`}
                       style={{ cursor: "pointer" }}
@@ -134,6 +134,7 @@ export default function CreateProgressFlowIntakeForm() {
                         onChange={({ target }) =>
                           setSelectedPatient(target.value)
                         }
+                        name="patient"
                         className="mr-2"
                       />
                       <spam>{item.Patient.name}</spam>

@@ -9,12 +9,9 @@ export default function DocViewer() {
   useEffect(() => {
     if(contentUrl.data) {
      const url = new URL(contentUrl.data);
-     console.log(url);
     //  const u = url.openConnection();
     //  const type = u.getHeaderField("Content-Type");
-      // console.log(type);
     } 
-    console.log(contentUrl.data);
   }, [contentUrl]);
 
   if (!contentUrl.isSuccessful || !contentUrl.data) {

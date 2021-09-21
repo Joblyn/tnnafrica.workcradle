@@ -25,7 +25,6 @@ export default function CompanyPatients() {
   }, []);
 
   useEffect(() => {
-    console.log(allPatients.data && allPatients.data);
     allPatients.data && setPatients(allPatients.data);
   }, [allPatients]);
 

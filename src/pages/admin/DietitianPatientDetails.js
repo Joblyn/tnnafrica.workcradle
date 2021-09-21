@@ -54,7 +54,7 @@ export default function DietitianPatientDetails() {
             <Col className="d-flex flex-row">
               <h6 className="mr-2">Weight:</h6>
               {"  "}
-              <span>{patient.weight}</span>
+              <span>{patient.weight}kg</span>
             </Col>
           </Col>
           <Col className="border-bottom">

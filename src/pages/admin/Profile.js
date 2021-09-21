@@ -60,7 +60,6 @@ export default function SuperAdminProfile() {
     delete control.updatedAt;
     delete control.id;
     delete control.isSuperAdmin;
-    console.log(control);
     if (control.email !== profile.email) {
       setEmailChanged(true);
       setUpdated(true);
@@ -73,10 +72,7 @@ export default function SuperAdminProfile() {
   };
 
   useEffect(() => {
-    console.log(updated);
-    console.log(updatedCompanyData);
     if (updated && updatedCompanyData.isSuccessful) {
-      console.log(emailChanged);
       if (emailChanged) {
         alert("Changed email. Kindly login with new email");
         setCustomAlert(false);

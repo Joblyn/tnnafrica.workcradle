@@ -44,7 +44,6 @@ class Store extends EventEmitter {
   // addFormItem(actionType, payload) {
   //   // _store.formItems = [..._store.formItems, payload];
   //   // this.emit(Constants.ADD_ITEM);
-  //   console.log('here');
   //   switch (actionType) {
   //     case Constants.ADD_ITEM:
   //       _store.formItems = [..._store.formItems, payload];

@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 export default function Interface() {
   // const history = useHistory();
   const authState = useSelector((state) => state.authState);
-  console.log(authState);
   return (
     <Col
       className="d-flex justify-content-start align-items-center landing px-5"

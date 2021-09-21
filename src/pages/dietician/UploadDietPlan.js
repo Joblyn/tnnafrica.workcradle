@@ -29,7 +29,6 @@ export default function UploadDietPlan() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    console.log(dietitian);
     let endpoint = getPatients + dietitian.companyCode;
     dispatch(getAllPatients(endpoint));
   }, []);
@@ -41,15 +40,12 @@ export default function UploadDietPlan() {
           (item) => item.Patient.assignedDietitian === dietitian.id
         )
     );
-    console.log(allPatients);
   }, [allPatients]);
 
   const submitForm = (e) => {
     e.preventDefault();
     const formData = new FormData();
     const inpFile = document.getElementById("file");
-    console.log(inpFile.files[0]);
-    console.log(createdFor);
     
       formData.append("docName", "Diet plan");
       formData.append("fileUpload", inpFile.files[0]);
@@ -65,8 +61,6 @@ export default function UploadDietPlan() {
       const token = JSON.parse(localStorage.getItem("tokens")).access.token;
       const bearerToken = "Bearer " + token;
       nProgress.start();
-      console.log(endpoint);
-      console.log(formData);
       fetch(endpoint, {
         method: "POST",
         body: formData,
@@ -74,14 +68,10 @@ export default function UploadDietPlan() {
           Authorization: bearerToken,
         },
       })
-        .then((res) => {
-          console.log(res);
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
           nProgress.done();
           nProgress.remove();
-          console.log(data);
           setSuccess(true);
           setIsLoading(false);
         })

@@ -38,7 +38,6 @@ export default function PatientDocuments() {
   }, []);
 
   useEffect(() => {
-    console.log(documents);
     documents.data &&
       setDocumentsState(
         documents.data.filter(
@@ -48,7 +47,6 @@ export default function PatientDocuments() {
         )
       );
   }, [documents]);
-  console.log(documentsState);
 
   useEffect(() => {
     documentsState && setSearchItems(documentsState);

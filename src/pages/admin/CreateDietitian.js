@@ -41,7 +41,6 @@ export default function CreateDietitian() {
   //   }
   // }, [createDietitianState]);
   useEffect(() => {
-    console.log(createDietitianState);
     if (createDietitianState.isCreated) {
       if (createDietitianState.data.code) {
         setSuccess(false);
@@ -81,7 +80,6 @@ export default function CreateDietitian() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(control);
     dispatch(createDietitian(createDietitianEndpoint, control));
   };
 

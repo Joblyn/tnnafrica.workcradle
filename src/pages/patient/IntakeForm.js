@@ -42,10 +42,9 @@ export default function IntakeForm() {
 
   useEffect(() => {
     if (intakeForms.isSuccessful) {
-      let result = intakeForms.data.results.filter(
+      let result = intakeForms.data.filter(
         (item) => item.createdFor === patient.id
       );
-      console.log(result[0].form);
       result.length && setIntakeForm(result[0].form);
       setIntakeFormData(result[0]);
     }
@@ -146,7 +145,6 @@ export default function IntakeForm() {
       companyCode: patient.companyCode,
       information: { ...control },
     };
-    console.log(payload);
     dispatch(createIntakeInfo(createIntakeInfoEndpoint, payload));
     setSubmitted(true);
   };
@@ -172,7 +170,7 @@ export default function IntakeForm() {
           className="text-sm-left"
         />
       </Row>
-      <Col>
+      <Col style={{minHeight: '70vh'}}>
         {intakeForm ? (
           <Card className="mx-auto" style={{ width: "100%", maxWidth: "800px" }}>
             <CardHeader className="border-bottom">Progress Intake Form</CardHeader>
@@ -191,7 +189,7 @@ export default function IntakeForm() {
             </CardBody>
           </Card>
         ) : (
-          <p>
+          <p className="text-muted">
             <em>Intake form not yet created by dietitian.</em>
           </p>
         )}

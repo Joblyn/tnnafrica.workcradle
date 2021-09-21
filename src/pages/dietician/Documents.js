@@ -40,7 +40,6 @@ export default function DietitianDocuments() {
   }, [documentsState]);
 
   useEffect(() => {
-    console.log(documents);
     documents.data &&
       setDocumentsState(
         documents.data.filter(
@@ -50,7 +49,6 @@ export default function DietitianDocuments() {
         )
       );
   }, [documents]);
-  console.log(documentsState);
 
   useEffect(() => {
     if (submitted && deleteDocumentState.isSuccessful) {

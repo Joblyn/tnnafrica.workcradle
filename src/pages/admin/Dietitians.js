@@ -18,7 +18,6 @@ export default function Dietitians(params) {
 
   useEffect(() => {
     let endpoint = getDietitians + companyCode;
-    console.log(endpoint);
     dispatch(getAllDietitians(endpoint));
   }, []);
 

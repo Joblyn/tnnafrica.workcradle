@@ -4,11 +4,11 @@ let prodUrl = 'https://workcradle.herokuapp.com/api/';
 export let baseUrl = process.env.NODE_ENV === 'production' ? prodUrl : localUrl;
 
 // get all companies
-export let allCompanies = 'Company/GetAllCompany';
+export let allCompanies = 'Company/GetAllCompany/';
 
 // Authentication
-export let createCompany = 'Company/CreateCompany';
-export let loginEndpoint = 'Auth/login';
+export let createCompany = 'Company/CreateCompany/';
+export let loginEndpoint = 'Auth/login/';
 export let createDietitianEndpoint = "Users/CreateUser";
 export let getDietitians = 'Users/GetDietitianByCompanyCode/';
 
@@ -22,7 +22,7 @@ export let getDietitianByIdEndpoint = 'Users/GetUserById/';
 
 export let getAdmins = 'Users/GetUserAdminByCompanyCode/';
 
-export let createPatientEndpoint = "Patient/CreatePatient";
+export let createPatientEndpoint = "Patient/CreatePatient/";
 export let getPatients = "Patient/GetPatientByCompanyCode/";
 
 
@@ -30,7 +30,7 @@ export let editPatientEndpoint = "Patient/UpdatePatient/";
 export let getPatientByIdEndpoint = 'Patient/GetPatient/';
 
 export let editDietitianOrAdmin ="Users/UpdateUser/";
-export let createDocument = 'Document/CreateDocument';
+export let createDocument = 'Document/CreateDocument/';
 export let deletePatientEndpoint = 'Patient/DeletePatient/';
 export let getDocumentsByCompanyCodeEndpoint = 'Document/GetDocumentByCompanyCode/';
 export let deleteDocumentEndpoint = 'Document/DeleteDocumentById/';

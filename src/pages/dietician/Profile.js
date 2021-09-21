@@ -34,12 +34,10 @@ export default function DietitianProfile() {
 
   useEffect(() => {
     let endpoint = getDietitianByIdEndpoint + dietitian.id;
-    console.log(endpoint);
     dispatch(getDietitianById(endpoint));
   }, []);
 
   useEffect(() => {
-    console.log(dietitianById);
     dietitianById.data && setControl(dietitianById.data);
   }, [dietitianById]);
 
@@ -53,7 +51,6 @@ export default function DietitianProfile() {
     delete control.updatedAt;
     delete control.id;
     delete control.isSuperAdmin;
-    console.log(control);
     dispatch(updateDietitianData(endpoint, control));
     setUpdated(true);
   }

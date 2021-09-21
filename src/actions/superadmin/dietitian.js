@@ -5,9 +5,7 @@ import {
   getDataWithToken, patchDataWithToken, postData } from "../services";
 
 const oncreateDietitian = (payload) => {
-  console.log(payload);
   if(payload.code) {
-    console.log(payload.code);
     return {
       type: ActionTypes.CREATE_DIETICIAN_FAIL,
       payload

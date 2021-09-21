@@ -22,7 +22,6 @@ export default function DietitianPatients() {
   }, []);
 
   useEffect(() => {
-    console.log(allPatients);
       allPatients.data && setPatients(allPatients.data.filter(item => item.Patient.assignedDietitian === Dietitian.id));
   }, [allPatients]);
 

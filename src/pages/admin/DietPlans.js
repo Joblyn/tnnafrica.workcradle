@@ -37,7 +37,6 @@ export default function AdminDietPlans() {
   }, []);
 
   useEffect(() => {
-    console.log(documents);
     documents.data &&
       setDocumentsState(
         documents.data.filter(

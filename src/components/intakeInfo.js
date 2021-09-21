@@ -1,5 +1,12 @@
 import React from "react";
-import { Card, CardHeader, CardBody, Button, Row, CardFooter } from "shards-react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+  CardFooter
+} from "shards-react";
 import { useHistory } from "react-router";
 
 export default function IntakeInfo({
@@ -15,17 +22,16 @@ export default function IntakeInfo({
 }) {
   const history = useHistory();
 
-  console.log('infos', infos);
 
   const viewIntakeForm = () => {
     setFormPopUp(true);
   };
 
   const handleDelete = (id) => {
-    setDeleteType('form');
+    setDeleteType("form");
     setDocId(id);
     setDeletePopup(true);
-  }
+  };
 
   const viewForm = (id) => {
     setPFormPopup(true);
@@ -34,11 +40,11 @@ export default function IntakeInfo({
 
   return (
     <Card>
-      <Card style={{ width: "100%" }}>
-        <CardHeader className="border-bottom d-flex justify-content-between">
-          Intake Information
-          <div className="" style={{ width: "fit-content" }}>
-            {!admin ? <Button
+      <CardHeader className="border-bottom d-flex justify-content-between">
+        Intake Information
+        <div className="" style={{ width: "fit-content" }}>
+          {!admin ? (
+            <Button
               outline
               onClick={
                 intakeForm
@@ -47,28 +53,31 @@ export default function IntakeInfo({
               }
             >
               {intakeForm ? "View intake form" : "Create intake form"}
-            </Button> : intakeForm && <Button outline onClick={viewIntakeForm}>
+            </Button>
+          ) : intakeForm ? (
+            <Button outline onClick={viewIntakeForm}>
               View Intake Form
-            </Button>}
-          </div>
-        </CardHeader>
-      </Card>
-      {infos && infos.length ? (
-        <CardBody>
-          <Row style={{
-            display: 'grid',
-            gridGap: '20px',
-            gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))",
-              maxHeight: "500px",
-              overflowY: 'auto'
-          }}>
-              {infos.reverse().map((item, id) => (
-                <Card key={`info-${id+1}`}
-                style={{height: 'fit-content'}}
-                
-                >
+            </Button>
+          ) : (
+            <Button outline disabled>
+              No Intake form created
+            </Button>
+          )}
+        </div>
+      </CardHeader>
+      <CardBody style={{ maxHeight: "600px", overflowY: "auto" }}>
+        {infos && infos.length ? (
+          <Row
+            style={{
+              display: "grid",
+              gridGap: "20px",
+              gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))"
+            }}
+          >
+            {infos.reverse().map((item, id) => (
+              <Card key={`info-${id + 1}`} style={{ height: "fit-content" }}>
                 <CardHeader className="border-bottom">
-                {Date(item.createdAt).slice(0, 15)}
+                  {Date(item.createdAt).slice(0, 15)}
                 </CardHeader>
                 <CardBody style={{ maxHeight: 150, overflowY: "auto" }}>
                   {Object.keys(item.information).map((prop, id) => (
@@ -83,7 +92,12 @@ export default function IntakeInfo({
                 </CardBody>
                 <CardFooter>
                   <div className="d-flex">
-                    <Button size="sm" outline onClick={() => viewForm(id)} className="mr-2">
+                    <Button
+                      size="sm"
+                      outline
+                      onClick={() => viewForm(id)}
+                      className="mr-2"
+                    >
                       View
                     </Button>
                     <Button
@@ -95,15 +109,14 @@ export default function IntakeInfo({
                       Delete
                     </Button>
                   </div>
-
                 </CardFooter>
-                </Card>
-              ))}
+              </Card>
+            ))}
           </Row>
-        </CardBody>
-      ) : (
-        <span className="text-muted">No documents for patient</span>
-      )}
+        ) : (
+          <span className="text-muted">No progress intake-forms submitted</span>
+        )}
+      </CardBody>
     </Card>
   );
 }

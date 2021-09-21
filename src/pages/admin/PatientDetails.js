@@ -80,7 +80,8 @@ const PatientDetails = () => {
 
   useEffect(() => {
     if (intakeForms.isSuccessful) {
-      let result = intakeForms.data.results.filter(
+
+      let result = intakeForms.data.filter(
         (item) => item.createdFor === patient.id
       );
       setIntakeForm(result[0]);
@@ -99,21 +100,18 @@ const PatientDetails = () => {
   useEffect(() => {
     intakeInfos.data &&
       setInfos(
-        intakeInfos.data.results.filter(
+        intakeInfos.data.filter(
           (item) => item.createdFor === patient.id
         )
       );
-      intakeInfos.data && console.log(intakeInfos.data.results)
   }, [intakeInfos]);
 
   useEffect(() => {
-    console.log('infos',infos);
   }, [infos]);
 
   useEffect(() => {
     let endpoint = getPatientByIdEndpoint + patient.id;
     dispatch(getPatientByIdAction(endpoint));
-    console.log(endpoint);
   }, []);
 
   useEffect(() => {
@@ -207,7 +205,6 @@ const PatientDetails = () => {
 
   const submitChanges = () => {
     let endpoint = editPatientEndpoint + patient.id;
-    console.log(endpoint);
     delete control.createdAt;
     delete control.updatedAt;
     delete control.id;
@@ -534,7 +531,7 @@ const PatientDetails = () => {
                     <Col className="d-flex flex-row align-items-center">
                       <h6 className="mr-2 mb-0">Weight:</h6>
                       <FormInput
-                        defaultValue={`${control.weight}`}
+                        defaultValue={`${control.weight}kg`}
                         disabled={!edit}
                         name="weight"
                         style={
@@ -763,7 +760,7 @@ const PatientDetails = () => {
               </Row>
             </Card>
           </Col>
-          <Col md="8">
+          <Col md="8" className="mb-4">
             <PatientDocs
               patient={patientById.data}
               setDeletePopUp={setDeletePopup}

@@ -36,7 +36,6 @@ export default function DietitianDietPlans() {
   }, []);
 
   useEffect(() => {
-    console.log(documents);
     documents.data &&
       setDocumentsState(
         documents.data.filter(

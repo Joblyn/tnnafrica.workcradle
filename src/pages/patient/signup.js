@@ -34,7 +34,6 @@ export default function PatientSignUp() {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(createPatientState);
     if (createPatientState.isCreated === true) {
       setSuccess(true);
       setErrorMessage(false);
@@ -96,7 +95,6 @@ export default function PatientSignUp() {
       foodPreference: foodPreferences,
       subscriptionPackage,
     };
-    console.log(payload);
     dispatch(createPatient(createPatientEndpoint, payload));
   };
 
@@ -191,7 +189,7 @@ export default function PatientSignUp() {
             <Col className="col-sm-6 col-md-6 col-lg-6">
               <FormGroup>
                 <label htmlFor="weight" style={{ fontSize: "1rem" }}>
-                  Weight
+                  Weight (kg)
                 </label>
                 <FormInput
                   required
